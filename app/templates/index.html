@@ -1,0 +1,58 @@
+<!doctype html>
+<html ng-app="mainApp">
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimal-ui">
+    <title><%= appname %></title>
+
+    <!-- build:css styles/style.css -->
+    <!-- bower:css -->
+    <!-- endbower -->
+    <link rel="stylesheet" href="styles/main.css">
+    <!-- endbuild -->
+    
+  </head>
+  <body>
+    <h4 class="ui inverted black block header"></span></h4>
+
+    <div class="ui top attached tabular tab1">
+        <a class="active item menu1" onclick="changeTab('tab1')">Tab1</a>
+    </div>
+
+    <div class="ui bottom attached tab active segment tab1" ng-controller="MainCtrl">
+        <div class="ui stackable grid">
+            <div class="ui form sixteen wide column ng-class: {loading: isLoading}">
+                <h4 class="ui block top attached header">Form</h4>
+                <div class="ui bottom attached secondary segment">
+                    <div class="field">
+                        <input type="text" ng-model="form.field1">
+                    </div>
+                    <div class="field">
+                        <button class="ui button large primary" ng-click="ok()">Ok</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <table class="ui celled striped large table segment">
+            <thead>
+                <tr>
+                    <th colspan="2">Header</th> 
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="item in myList track by item.name">
+                    <td>{{item.name}}</td>
+                    <td class="collapsing right aligned">{{item.site}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
+    <!-- build:js script.js -->
+    <!-- bower:js -->
+    <!-- endbower -->
+    <!-- endbuild -->
+  </body>
+</html>
