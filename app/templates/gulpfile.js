@@ -91,7 +91,7 @@ gulp.task('watch', ['connect'], function () {
     'app/images/**/*'
   ]).on('change', $.livereload.changed);
 
-  gulp.watch('app/styles/**/*.<%= includeSass ? 'scss' : 'css' %>', ['styles']);
+  gulp.watch('app/styles/**/*.css', ['styles']);
   gulp.watch('bower.json', ['wiredep', 'fonts']);
 });
 

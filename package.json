@@ -1,6 +1,6 @@
 {
   "name": "generator-gulp-angular-semantic-ui",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Scaffold out a front-end web app",
   "license": "MIT",
   "repository": "gustavohenrique/generator-gulp-angular-semantic-ui",
@@ -29,7 +29,6 @@
   "dependencies": {
     "chalk": "^0.5.1",
     "cheerio": "^0.17.0",
-    "wiredep": "^1.4.3",
     "yeoman-generator": "^0.17.7",
     "yosay": "^1.0.0"
   },

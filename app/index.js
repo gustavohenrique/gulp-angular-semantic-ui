@@ -4,7 +4,6 @@ var path = require('path');
 var yeoman = require('yeoman-generator');
 var yosay = require('yosay');
 var chalk = require('chalk');
-var wiredep = require('wiredep');
 
 module.exports = yeoman.generators.Base.extend({
   constructor: function () {
@@ -33,9 +32,10 @@ module.exports = yeoman.generators.Base.extend({
   },
 
   initializing: function () {
+
     this.pkg = require('../package.json');
   },
-
+/*
   prompting: function () {
     var done = this.async();
 
@@ -43,7 +43,7 @@ module.exports = yeoman.generators.Base.extend({
       this.log(yosay('I include HTML5 Boilerplate, AngularJS, Semantic UI and a gulpfile.js to build your app.'));
     }
   },
-
+*/
   writing: {
     gulpfile: function() {
       this.template('gulpfile.js');
@@ -90,29 +90,14 @@ module.exports = yeoman.generators.Base.extend({
       this.indexFile = this.src.read('index.html');
       this.indexFile = this.engine(this.indexFile, this);
 
-      var bs = 'bower_components/';
-      this.indexFile = this.appendScripts(this.indexFile, 'scripts/plugins.js', [
-        bs + 'affix.js',
-        bs + 'alert.js',
-        bs + 'dropdown.js',
-        bs + 'tooltip.js',
-        bs + 'modal.js',
-        bs + 'transition.js',
-        bs + 'button.js',
-        bs + 'popover.js',
-        bs + 'carousel.js',
-        bs + 'scrollspy.js',
-        bs + 'collapse.js',
-        bs + 'tab.js'
-      ]);
-
-      var jsFiles = 
+      /*
       this.indexFile = this.appendFiles({
         html: this.indexFile,
         fileType: 'js',
         optimizedPath: 'scripts/app.js',
         sourceFileList: ['scripts/app.js']
       });
+      */
 
       this.write('app/index.html', this.indexFile);
     },
@@ -128,6 +113,7 @@ module.exports = yeoman.generators.Base.extend({
       this.copy('scripts/app-service.js', 'app/scripts/app-service.js');
       this.copy('scripts/app-directives.js', 'app/scripts/app-directives.js');
     }
+  
   },
 
   install: function () {
@@ -146,7 +132,6 @@ module.exports = yeoman.generators.Base.extend({
     });
 
     this.on('end', function () {
-
       // ideally we should use composeWith, but we're invoking it here
       // because generator-mocha is changing the working directory
       // https://github.com/yeoman/generator-mocha/issues/28
