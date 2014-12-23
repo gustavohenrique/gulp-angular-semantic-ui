@@ -1,4 +1,4 @@
-# Frontend webapp generator
+# gulp-angular-semantic-ui generator [![Build Status](https://secure.travis-ci.org/gustavohenrique/gulp-angular-semantic-ui.svg?branch=master)](http://travis-ci.org/gustavohenrique/gulp-angular-semantic-ui)
 
 > [Yeoman](http://yeoman.io) generator that scaffolds out a front-end web app using [gulp](http://gulpjs.com/) for the build process
 

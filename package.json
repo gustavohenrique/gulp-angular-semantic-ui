@@ -1,9 +1,9 @@
 {
   "name": "generator-gulp-angular-semantic-ui",
   "version": "0.1.0",
-  "description": "Scaffold out a front-end web app",
+  "description": "A yeoman generator for frontend webapp",
   "license": "MIT",
-  "repository": "gustavohenrique/generator-gulp-angular-semantic-ui",
+  "repository": "gustavohenrique/gulp-angular-semantic-ui",
   "author": "Gustavo Henrique",
   "main": "app/index.js",
   "engines": {
