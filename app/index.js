@@ -1,4 +1,5 @@
 'use strict';
+
 var fs = require('fs');
 var path = require('path');
 var yeoman = require('yeoman-generator');
@@ -15,18 +16,8 @@ module.exports = yeoman.generators.Base.extend({
       defaults: 'mocha'
     });
 
-    this.option('skip-welcome-message', {
-      desc: 'Skips the welcome message',
-      type: Boolean
-    });
-
     this.option('skip-install', {
       desc: 'Skips the installation of dependencies',
-      type: Boolean
-    });
-
-    this.option('skip-install-message', {
-      desc: 'Skips the message after the installation of dependencies',
       type: Boolean
     });
   },
@@ -35,15 +26,7 @@ module.exports = yeoman.generators.Base.extend({
 
     this.pkg = require('../package.json');
   },
-/*
-  prompting: function () {
-    var done = this.async();
 
-    if (!this.options['skip-welcome-message']) {
-      this.log(yosay('I include HTML5 Boilerplate, AngularJS, Semantic UI and a gulpfile.js to build your app.'));
-    }
-  },
-*/
   writing: {
     gulpfile: function() {
       this.template('gulpfile.js');
@@ -127,7 +110,6 @@ module.exports = yeoman.generators.Base.extend({
     }
 
     this.installDependencies({
-      skipMessage: this.options['skip-install-message'],
       skipInstall: this.options['skip-install']
     });
 
@@ -137,7 +119,6 @@ module.exports = yeoman.generators.Base.extend({
       // https://github.com/yeoman/generator-mocha/issues/28
       this.invoke(this.options['test-framework'], {
         options: {
-          'skip-message': this.options['skip-install-message'],
           'skip-install': this.options['skip-install']
         }
       });
