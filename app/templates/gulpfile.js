@@ -59,6 +59,18 @@ gulp.task('extras', function () {
   }).pipe(gulp.dest('dist'));
 });
 
+gulp.task('webdriver', $.protractor.webdriver_standalone);
+
+gulp.task('e2e', function () {
+    gulp.src(['./tests/e2e/*.js'])
+      .pipe($.protractor.protractor({
+        configFile: 'tests/protractor.conf.js',
+        args: ['--baseUrl', 'http://127.0.0.1:8000'],
+        debug: false
+      })) 
+      .on('error', function(e) { throw e })
+});
+
 gulp.task('clean', require('del').bind(null, ['.tmp', 'dist']));
 
 gulp.task('connect', ['styles', 'fonts'], function () {
