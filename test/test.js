@@ -38,7 +38,9 @@ describe('gulp-angular-semantic-ui generator test', function() {
             'app/scripts/app-controller.js',
             'app/scripts/app-service.js',
             'app/scripts/app-directives.js',
-            'app/styles/main.css'
+            'app/styles/main.css',
+            'tests/protractor.conf.js',
+            'tests/e2e/app_spec.js'
         ];
 
         this.webapp.run({}, function() {
