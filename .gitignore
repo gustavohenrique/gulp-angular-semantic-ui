@@ -4,3 +4,4 @@ test/gulp-file
 test/sass
 test/slug
 temp/
+npm-debug.log
