@@ -3,10 +3,12 @@
 
     var app = angular.module('AppController', []);
 
-    app.controller('MainCtrl', ['$scope', '$timeout',
+    app.controller('MainCtrl', ['$scope', '$timeout', 'Global',
 
-        function ($scope, $timeout) {
+        function ($scope, $timeout, Global) {
+            $scope.global = Global;
             $scope.isLoading = true;
+
             $timeout(function () {
                 $scope.isLoading = false;
             },
