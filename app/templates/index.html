@@ -15,50 +15,87 @@
     
   </head>
   <body>
-    <h4 class="ui inverted black block header"><%= appname %></span></h4>
-
-    <div class="ui top attached tabular menu">
-        <tab-item id="'tab1'" text="'Tab 1'" active="true"></tab-item>
-        <tab-item id="'tab2'" text="'Tab 2'"></tab-item>
-    </div>
-
-    <div class="ui bottom attached tab active segment tab1" ng-controller="MainCtrl">
-        <div class="ui grid">
-            <div class="ui form sixteen wide column ng-class: {loading: isLoading}">
-                <h4 class="ui block top attached header">Insert Contact</h4>
-                <div class="ui bottom attached secondary segment">
-                    <div class="field">
-                        <label>Name:</label>
-                        <input type="text" ng-model="name">
-                    </div>
-                    <div class="field">
-                        <label>Site:</label>
-                        <input type="text" ng-model="site">
-                    </div>
-                    <div class="field">
-                        <button class="ui button large primary" ng-click="insert()">Insert</button>
+    <div ng-controller="AuthCtrl" class="ui fixed inverted main menu">
+        <div class="container">
+            <div class="title item"><%= appname %></div>
+            <div class="right menu ng-class: {hide: ! global.isAuthenticated}">
+                <div class="ui simple dropdown item">
+                    Profile
+                    <i class="dropdown icon"></i>
+                    <div class="menu">
+                        <a class="item">Edit</a>
+                        <a class="item" ng-click="logout()">Logout</a>
                     </div>
                 </div>
             </div>
         </div>
-
-        <table class="ui celled striped large table segment">
-            <thead>
-                <tr>
-                    <th colspan="2">Contacts</th> 
-                </tr>
-            </thead>
-            <tbody>
-                <tr ng-repeat="person in contacts track by person.name">
-                    <td>{{person.name}}</td>
-                    <td class="collapsing right aligned"><a href="http://{{person.site}}">{{person.site}}</a></td>
-                </tr>
-            </tbody>
-        </table>
     </div>
 
-    <div class="ui bottom attached tab segment tab2">
-        <p>This is the tab 2 content</p>
+    <h4>&nbsp;</h4>
+
+    <div ng-controller="AuthCtrl" class="ui one column stackable center aligned page grid"  ng-hide="global.isAuthenticated">
+       <div class="column six wide">
+            <h4 class="ui block top attached header">Login</h4>
+            <div class="ui form bottom attached secondary segment">
+                <div class="inline field">
+                    <label class="login">Username:</label>
+                    <input type="text" ng-model="user.username">
+                </div>
+                <div class="inline field">
+                    <label class="login">Password:</label>
+                    <input type="password" ng-model="user.password">
+                </div>
+                <div class="field">
+                    <button class="ui button large primary" ng-click="enter()">Enter</button>
+                </div>
+            </div>
+       </div>
+    </div>
+
+    <div ng-controller="MainCtrl" class="ng-class: {hide: ! global.isAuthenticated}">
+        <div class="ui top attached tabular menu">
+            <tab-item id="'tab1'" text="'Tab 1'" active="true"></tab-item>
+            <tab-item id="'tab2'" text="'Tab 2'"></tab-item>
+        </div>
+
+        <div class="ui bottom attached tab active segment tab1">
+            <div class="ui grid">
+                <div class="ui form sixteen wide column ng-class: {loading: isLoading}">
+                    <h4 class="ui block top attached header">Insert Contact {{glob}}</h4>
+                    <div class="ui bottom attached secondary segment">
+                        <div class="field">
+                            <label>Name:</label>
+                            <input type="text" ng-model="name">
+                        </div>
+                        <div class="field">
+                            <label>Site:</label>
+                            <input type="text" ng-model="site">
+                        </div>
+                        <div class="field">
+                            <button class="ui button large primary" ng-click="insert()">Insert</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <table class="ui celled striped large table segment">
+                <thead>
+                    <tr>
+                        <th colspan="2">Contacts</th> 
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="person in contacts track by person.name">
+                        <td>{{person.name}}</td>
+                        <td class="collapsing right aligned"><a href="http://{{person.site}}">{{person.site}}</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="ui bottom attached tab segment tab2">
+            <p>This is the tab 2 content</p>
+        </div>
     </div>
 
     
@@ -68,6 +105,7 @@
     <!-- endbower -->
     <script src="scripts/app-service.js"></script>
     <script src="scripts/app-controller.js"></script>
+    <script src="scripts/app-factory.js"></script>
     <script src="scripts/app-directives.js"></script>
     <script src="scripts/app.js"></script>
     <!-- endbuild -->

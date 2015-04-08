@@ -26,4 +26,23 @@
         }
     ]);
 
+    app.controller('AuthCtrl', ['$scope', 'Global',
+
+        function ($scope, Global) {
+            $scope.global = Global;
+            $scope.user = {
+                username: 'admin',
+                password: 'admin'
+            };
+
+            $scope.enter = function () {
+                Global.isAuthenticated = true;
+            };
+
+            $scope.logout = function () {
+                Global.isAuthenticated = false;
+            };
+        }
+    ]);
+
 })(angular);
