@@ -1,6 +1,10 @@
 # AngularJs + Semantic-UI + Gulp
 
-> [Yeoman](http://yeoman.io) generator that scaffolds out a front-end web app using [gulp](http://gulpjs.com/) for the build process
+> [Yeoman](http://yeoman.io) generator for basic CRUD responsive app using [gulp](http://gulpjs.com/) for the build process
+
+## Demo
+
+[http://gustavohenrique.github.io/gulp-angular-semantic-ui](http://gustavohenrique.github.io/gulp-angular-semantic-ui/)
 
 ## Features
 
@@ -10,6 +14,9 @@ Please see our [gulpfile.js](app/templates/gulpfile.js) for up to date informati
 * Built-in preview server with livereload
 * Automagically lint your scripts
 * Awesome image optimization
+* Token authentication
+* Login form
+* Table with pagination
 
 *For more information on what this generator can do for you, take a look at the [gulp plugins](app/templates/_package.json) used in our `package.json`.*
 

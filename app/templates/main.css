@@ -9,7 +9,7 @@ label.login {
 }
 
 .hide {
-    display: none;
+    display: none !important;
 }
 
 div.title.item {
