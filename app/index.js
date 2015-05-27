@@ -76,6 +76,7 @@ module.exports = yeoman.generators.Base.extend({
             this.mkdir('app/fonts');
             this.copy('scripts/app.js', 'app/scripts/app.js');
             this.copy('scripts/app-controller.js', 'app/scripts/app-controller.js');
+            this.copy('scripts/app-factory.js', 'app/scripts/app-factory.js');
             this.copy('scripts/app-service.js', 'app/scripts/app-service.js');
             this.copy('scripts/app-directives.js', 'app/scripts/app-directives.js');
         },
