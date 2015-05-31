@@ -1,7 +1,7 @@
 /* jshint node:true */
 /* global -$ */
 'use strict';
-// generated on <%= (new Date).toISOString().split('T')[0] %> using <%= pkg.name %> <%= pkg.version %>
+// generated on 2015-05-29 using generator-gulp-angular-semantic-ui 0.5.0
 var gulp = require('gulp');
 var $ = require('gulp-load-plugins')();
 
@@ -28,7 +28,7 @@ gulp.task('jshint', function () {
 gulp.task('html', ['styles', 'semantic'], function () {
   var assets = $.useref.assets({searchPath: ['.tmp', 'app', '.']});
 
-  return gulp.src('app/*.html')
+  return gulp.src('app/**/*.html')
     .pipe(assets)
     .pipe($.if('*.js', $.uglify()))
     .pipe($.if('*.css', $.csso()))
@@ -102,7 +102,7 @@ gulp.task('serve', ['connect', 'watch'], function () {
 gulp.task('watch', ['connect'], function () {
   $.livereload.listen();
   gulp.watch([
-    'app/*.html',
+    'app/**/*.html',
     '.tmp/styles/**/*.css',
     'app/scripts/**/*.js',
     'app/images/**/*'

@@ -5,3 +5,4 @@ test/sass
 test/slug
 temp/
 npm-debug.log
+.DS_Store

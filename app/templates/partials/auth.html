@@ -1,0 +1,23 @@
+<br><br>
+<div class="ui one column center aligned page grid">
+   <div class="column six wide">
+        <h4 class="ui block top attached header">Login</h4>
+        <div class="ui form bottom attached fluid segment">
+            <div class="ui negative message hide" show-if="{{ isError }}">
+                <div class="header">Authentication failed</div>
+                <p>Invalid username or password.</p>
+            </div>
+            <div class="inline field">
+                <label class="login">Username:</label>
+                <input type="text" ng-model="user.username">
+            </div>
+            <div class="inline field">
+                <label class="login">Password:</label>
+                <input type="password" ng-model="user.password">
+            </div>
+            <div class="field">
+                <a class="ui button large primary" ng-click="enter()">Enter</a>
+            </div>
+        </div>
+   </div>
+</div>
