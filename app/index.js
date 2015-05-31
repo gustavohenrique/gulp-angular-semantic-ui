@@ -40,6 +40,7 @@ module.exports = yeoman.generators.Base.extend({
                 private: true,
                 dependencies: {
                     'angularjs': '~1.3.15',
+					'angular-route': '~1.4.0',
                     'semantic': '~1.11.6'
                 }
             };
@@ -70,20 +71,15 @@ module.exports = yeoman.generators.Base.extend({
 
         app: function() {
             this.mkdir('app');
-            this.mkdir('app/scripts');
             this.mkdir('app/styles');
             this.mkdir('app/images');
             this.mkdir('app/fonts');
-            this.copy('scripts/app.js', 'app/scripts/app.js');
-            this.copy('scripts/app-controller.js', 'app/scripts/app-controller.js');
-            this.copy('scripts/app-service.js', 'app/scripts/app-service.js');
-            this.copy('scripts/app-directives.js', 'app/scripts/app-directives.js');
+            this.directory('scripts', 'app/scripts');
+            this.directory('partials', 'app/partials');
         },
 
         tests: function () {
-            this.mkdir('tests');
-            this.copy('tests/e2e/app_spec.js', 'tests/e2e/app_spec.js');
-            this.copy('tests/protractor.conf.js', 'tests/protractor.conf.js');
+            this.directory('tests', 'tests');
         }
 
     },
