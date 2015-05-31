@@ -39,9 +39,9 @@ module.exports = yeoman.generators.Base.extend({
                 name: this._.slugify(this.appname),
                 private: true,
                 dependencies: {
-                    'angularjs': '~1.3.15',
+                    'angularjs': '~1.4.0',
 					'angular-route': '~1.4.0',
-                    'semantic': '~1.11.6'
+                    'semantic': '~1.12.3'
                 }
             };
 
