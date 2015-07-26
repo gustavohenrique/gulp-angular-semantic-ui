@@ -1,16 +1,18 @@
 ;(function (angular) {
     'use strict';
 
-    var app = angular.module('controllers.Menu', []);
+    angular
+        .module('controllers.Menu', [])
+        .controller('MenuCtrl', MenuCtrl);
 
-    app.controller('MenuCtrl', ['$scope', '$location',
+    MenuCtrl.$inject = ['$location'];
 
-        function ($scope, $location) {
-            $scope.showBox = function (box) {
-                $location.path(box);
-            };
+    function MenuCtrl ($location) {
+        var vm = this;
+        vm.showBox = function (box) {
+            $location.path(box);
+        };
 
-        }
-    ]);
+    }
 
 })(angular);

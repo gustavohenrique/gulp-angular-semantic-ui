@@ -1,47 +1,49 @@
 ;(function (angular) {
     'use strict';
 
-    var URL_BASE = 'https://api.github.com';
+    angular
+        .module('services.Pagination', [])
+        .service('paginationService', PaginationService);
 
-    var app = angular.module('services.Pagination', []);
+    PaginationService.$inject = ['$http', '$q', 'Constants'];
 
-    app.service('paginationService', ['$http',
+    function PaginationService ($http, $q, Constants) {
 
-        function ($http) {
-            
-            this.findAll = function (perPage, page, success, error) {
-                var url = URL_BASE + '/users/gustavohenrique/repos?sort=updated&direction=desc';
-                if (page > 0) {
-                    url += '&page=' + page;
-                }
-                if (perPage > 0) {
-                    url += '&per_page=' + perPage;
-                }
-                $http.get(url).success(success).error(error);
-            };
+        this.findAll = function (perPage, page) {
+            var url = Constants.baseUrl + '/users/gustavohenrique/repos?sort=updated&direction=desc';
+            if (page > 0) {
+                url += '&page=' + page;
+            }
+            if (perPage > 0) {
+                url += '&per_page=' + perPage;
+            }
+            return $http.get(url);
+        };
 
-            this.edit = function (name, success, error) {
-                var url = URL_BASE + '/repos/gustavohenrique/' + name;
-                $http.get(url).success(success).error(error);
-            };
+        this.edit = function (name) {
+            var url = Constants.baseUrl + '/repos/gustavohenrique/' + name;
+            return $http.get(url);
+        };
 
-            this.remove = function (item, success, error) {
-                var id = item.id;
-                //$http.delete('http://some-url/?id=' + id).success(success).error(error);
-                success();
-            };
+        this.remove = function (item) {
+            var id = item.id;
+            //$http.delete('http://some-url/?id=' + id).success(success).error(error);
+            var deferred = $q.defer();
+            deferred.resolve();
+            return deferred.promise;
+        };
 
-            this.save = function (item, success, error) {
-                if (item.hasOwnProperty('id') && item.id > 0) {
-                    // make a PUT to update url
-                }
-                else {
-                    // make a POST to insert url
-                }
-                success();
-            };
-        }
-    ]);
-
+        this.save = function (item) {
+            if (item.hasOwnProperty('id') && item.id > 0) {
+                // make a PUT to update url
+            }
+            else {
+                // make a POST to insert url
+            }
+            var deferred = $q.defer();
+            deferred.resolve();
+            return deferred.promise;
+        };
+    }
 
 })(angular);

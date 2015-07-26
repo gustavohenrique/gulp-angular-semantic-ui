@@ -8,6 +8,14 @@ label.login {
     text-align: left;
 }
 
+div.ui.auth, div.ui.top.attached.menu {
+    margin-top: 40px;
+}
+
+.ui.main.container {
+    width: 100%;
+}
+
 .hide {
     display: none !important;
 }

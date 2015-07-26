@@ -1,13 +1,12 @@
 ;(function (angular) {
     'use strict';
 
-    var app = angular.module('controllers.Tabular', []);
+    angular
+        .module('controllers.Tabular', [])
+        .controller('TabularCtrl', TabularCtrl);
 
-    
-    app.controller('TabularCtrl', ['$scope',
+    TabularCtrl.$inject = [];
 
-        function ($scope) {
-        }
-    ]);
+    function TabularCtrl () {}
 
 })(angular);

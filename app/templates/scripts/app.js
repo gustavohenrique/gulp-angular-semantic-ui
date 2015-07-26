@@ -1,11 +1,30 @@
 ;(function (angular) {
     'use strict';
 
-    var app = angular.module('MainApp', ['MainRouter',
-        'controllers.Auth', 'controllers.Menu', 'controllers.Pagination', 'controllers.Tabular',
-        'services.Pagination', 'services.Tabular',
-        'directives.Pagination', 'directives.Tabular', 'directives.showIf']);
+    var app = angular.module('MainApp', [
+        'MainRouter',
+        'angular-loading-bar',
 
+        'controllers.Auth',
+        'controllers.Menu',
+        'controllers.Pagination',
+        'controllers.Tabular',
+
+        'services.Pagination',
+        'services.Tabular',
+
+        'directives.Pagination',
+        'directives.Tabular',
+        'directives.showIf'
+    ]);
+
+    app.constant('Constants', {
+        baseUrl: 'https://api.github.com'
+    });
+
+    app.config(['cfpLoadingBarProvider', function(cfpLoadingBarProvider) {
+        cfpLoadingBarProvider.includeSpinner = false;
+    }]);
     /*
     app.config(['$httpProvider', function ($httpProvider) {
         // CORS
@@ -27,5 +46,5 @@
         };
     }]);
     */
-    
+
 })(angular);

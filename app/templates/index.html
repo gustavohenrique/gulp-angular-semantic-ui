@@ -4,21 +4,23 @@
     <meta charset="utf-8">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, minimal-ui">
+    <meta name="author" content="Gustavo Henrique <gustavo@gustavohenrique.net>">
     <title><%= appname %> by gulp-angular-semantic-ui</title>
 
     <!-- build:css styles/style.css -->
     <!-- bower:css -->
-    <link rel="stylesheet" href="../bower_components/semantic/dist/semantic.css" />
+    <link rel="stylesheet" href="../bower_components/semantic-ui/dist/semantic.css" />
+    <link rel="stylesheet" href="../bower_components/angular-loading-bar/build/loading-bar.css" />
     <!-- endbower -->
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
-    
+
   </head>
   <body>
-    
+
     <div ng-controller="MenuCtrl" class="ui fixed inverted main menu">
-        <div class="container">
-            <div class="title item"><%= appname %></div>
+        <div class="ui main container">
+            <a ng-href="#/" class="title item"><%= appname %></a>
             <div class="right menu">
                 <div class="ui simple dropdown item">
                     <i class="browser icon"></i> Demo
@@ -41,11 +43,11 @@
 
     <div ng-view></div>
 
-    
     <!-- build:js script.js -->
     <!-- bower:js -->
-    <script src="../bower_components/angularjs/angular.js"></script>
+    <script src="../bower_components/angular/angular.js"></script>
     <script src="../bower_components/angular-route/angular-route.js"></script>
+    <script src="../bower_components/angular-loading-bar/build/loading-bar.js"></script>
     <!-- endbower -->
     <script src="scripts/controllers/MenuCtrl.js"></script>
     <script src="scripts/controllers/AuthCtrl.js"></script>

@@ -5,26 +5,25 @@
 
     app.directive('tabItem', function () {
         return {
-            restrict: 'E',
-            template: '<a class="item {{activeClass}} {{id}}" ng-click="changeTab()" style="cursor:pointer">{{text}}</a>',
-            scope: {
-                active: '=',
-                id: '=',
-                text: '='
-            },
+            restrict: 'A',
             link: function (scope, element, attrs) {
                 var ACTIVE_CLASS = 'active';
-                scope.activeClass = (scope.active) ? ACTIVE_CLASS : '';
+                var id = attrs.id;
 
-                scope.changeTab = function () {
-                    var f = function (el) {
-                        el.classList.remove('active');
-                    };
-                    Array.prototype.slice.call(document.querySelectorAll('a.item')).map(f);
-                    Array.prototype.slice.call(document.querySelectorAll('.tab.segment')).map(f);
-                    document.querySelector('.item.' + scope.id).classList.add(ACTIVE_CLASS);
-                    document.querySelector('.tab.segment.' + scope.id).classList.add(ACTIVE_CLASS);
-                };
+                element.on('click', changeTab);
+
+                function removeClass (el) {
+                    el.classList.remove(ACTIVE_CLASS);
+                }
+
+                function changeTab () {
+                    // Remove the active class from all tab items and tab contents
+                    Array.prototype.slice.call(document.querySelectorAll('.tab.active')).map(removeClass);
+
+                    // Add the active class to current tab and it content
+                    element.addClass(ACTIVE_CLASS);
+                    document.querySelector('.tab.segment.' + id).classList.add(ACTIVE_CLASS);
+                }
             }
         };
     });

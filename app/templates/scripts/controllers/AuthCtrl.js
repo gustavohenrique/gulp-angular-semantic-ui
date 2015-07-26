@@ -1,20 +1,21 @@
 ;(function (angular) {
     'use strict';
 
-    var app = angular.module('controllers.Auth', []);
+    angular
+        .module('controllers.Auth', [])
+        .controller('AuthCtrl', AuthCtrl);
 
-    app.controller('AuthCtrl', ['$scope',
+    function AuthCtrl () {
+        var vm = this;
+        vm.user = {
+            username: 'wrong-username',
+            password: 'wrong-password'
+        };
+        vm.enter = enter;
 
-        function ($scope) {
-            $scope.user = {
-                username: 'wrong-username',
-                password: 'wrong-password'
-            };
-
-            $scope.enter = function () {
-                $scope.isError = true;
-            };
+        function enter () {
+            vm.isError = true;
         }
-    ]);
+    }
 
 })(angular);

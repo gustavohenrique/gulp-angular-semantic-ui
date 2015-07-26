@@ -5,6 +5,8 @@ var path = require('path');
 var yeoman = require('yeoman-generator');
 var yosay = require('yosay');
 var chalk = require('chalk');
+var mkdirp = require('mkdirp');
+var _s = require('underscore.string');
 
 module.exports = yeoman.generators.Base.extend({
     constructor: function() {
@@ -22,11 +24,17 @@ module.exports = yeoman.generators.Base.extend({
 
     writing: {
         gulpfile: function() {
-            this.template('gulpfile.js');
+            this.fs.copyTpl(
+                this.templatePath('gulpfile.js'),
+                this.destinationPath('gulpfile.js')
+            );
         },
 
         packageJSON: function() {
-            this.template('_package.json', 'package.json');
+            this.fs.copyTpl(
+                this.templatePath('_package.json'),
+                this.destinationPath('package.json')
+            );
         },
 
         git: function() {
@@ -36,17 +44,21 @@ module.exports = yeoman.generators.Base.extend({
 
         bower: function() {
             var bower = {
-                name: this._.slugify(this.appname),
+                name: _s.slugify(this.appname),
                 private: true,
                 dependencies: {
-                    'angularjs': '~1.4.0',
-					'angular-route': '~1.4.0',
-                    'semantic': '~1.12.3'
+                    'angular': '~1.4.3',
+                    'angular-route': '~1.4.3',
+                    'angular-loading-bar': '~0.8.0',
+                    'semantic-ui': '~2.0.7'
                 }
             };
 
-            this.copy('bowerrc', '.bowerrc');
-            this.write('bower.json', JSON.stringify(bower, null, 2));
+            this.fs.writeJSON('bower.json', bower);
+            this.fs.copy(
+                this.templatePath('bowerrc'),
+                this.destinationPath('.bowerrc')
+            );
         },
 
         jshint: function() {
@@ -57,23 +69,28 @@ module.exports = yeoman.generators.Base.extend({
             this.copy('editorconfig', '.editorconfig');
         },
 
-
         mainStylesheet: function() {
             var css = 'main.css';
             this.copy(css, 'app/styles/' + css);
         },
 
         writeIndex: function() {
-            this.indexFile = this.src.read('index.html');
-            this.indexFile = this.engine(this.indexFile, this);
-            this.write('app/index.html', this.indexFile);
+            var params = {
+                appname: this.appname
+            };
+
+            this.fs.copyTpl(
+                this.templatePath('index.html'),
+                this.destinationPath('app/index.html'),
+                params
+            );
         },
 
         app: function() {
-            this.mkdir('app');
-            this.mkdir('app/styles');
-            this.mkdir('app/images');
-            this.mkdir('app/fonts');
+            mkdirp('app');
+            mkdirp('app/styles');
+            mkdirp('app/images');
+            mkdirp('app/fonts');
             this.directory('scripts', 'app/scripts');
             this.directory('partials', 'app/partials');
         },
@@ -81,7 +98,6 @@ module.exports = yeoman.generators.Base.extend({
         tests: function () {
             this.directory('tests', 'tests');
         }
-
     },
 
     install: function() {

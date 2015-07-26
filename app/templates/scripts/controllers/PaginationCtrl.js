@@ -1,85 +1,95 @@
 ;(function (angular) {
     'use strict';
 
-    var app = angular.module('controllers.Pagination', []);
+    angular
+        .module('controllers.Pagination', [])
+        .controller('PaginationCtrl', PaginationCtrl);
 
-    app.controller('PaginationCtrl', ['$scope', '$location', '$routeParams',
-        '$timeout', 'paginationService',
+    PaginationCtrl.$inject = [
+        '$location', '$routeParams',
+        '$timeout', 'paginationService'
+    ];
 
-        function ($scope, $location, $routeParams, $timeout, paginationService) {
-            $scope.paginationData = {
-                perPage: 5,
-                currentPage: 1
-            };
-            $scope.isLoading = false;
+    function PaginationCtrl ($location, $routeParams, $timeout, paginationService) {
+        var vm = this;
+        vm.paginationData = {
+            perPage: 5,
+            currentPage: 1
+        };
+        vm.isLoading = false;
+        vm.remove = remove;
+        vm.save = save;
+        vm.paginate = paginate; // called by directives
 
-            $scope.remove = function (item, index) {
-                if ($scope.paginationData.items && $scope.paginationData.items.length > 0) {
-                    paginationService.remove(item, function (res) {
-                        $scope.paginationData.items.splice(index, 1);
-                    });
-                }
-            };
-
-            $scope.save = function () {
-                // $timeout is used just for simulate a "loading"
-                $scope.isLoading = true;
-                $timeout(function () {
-                    paginationService.save($scope.selectedItem, function (res) {
-                        var item = $scope.selectedItem;
-                        //$scope.items[item.index] = angular.copy(item.obj);
-                        $scope.isLoading = false;
-                    });
-                },
-                1000);
-            };
-
-            var calculateTotalPages = function () {
-                paginationService.findAll(0, 0, function (res) {
-                    var paginationData = $scope.paginationData || {};
-                    paginationData.total = res.length;
-                    paginationData.totalPages = Math.ceil(paginationData.total / paginationData.perPage);
-                },
-                function (res) {
-                    console.log('Error trying to get the total of repositories', res);
-                });
-            };
-            calculateTotalPages();
-
-            var paginate = function (pageNumber, perPage) {
-                $scope.isLoading = true;
-                var paginationData = $scope.paginationData || {};
-                if (! perPage) {
-                    perPage = paginationData.perPage;
-                }
-                paginationService.findAll(perPage, pageNumber, function (res) {
-                    paginationData.items = res;
-                    $scope.isLoading = false;
-                },
-                function (res) {
-                    console.log('Error getting the repositories list', res);
-                });
-            };
-
-            var edit = function (name) {
-                paginationService.edit(name, function (res) {
-                    $scope.selectedItem = res;
-                },
-                function (res) {
-                    console.log('Error getting the repository by name ' + name, res);
-                });
-            };
-
-            if ($routeParams.name) {
-                edit($routeParams.name);
-            }
-            else {
-                paginate($scope.paginationData.currentPage);
-            }
-
-            // called by directives
-            $scope.paginate = paginate;
+        if ($routeParams.name) {
+            edit($routeParams.name);
         }
-    ]);
+        else {
+            paginate(vm.paginationData.currentPage);
+        }
+
+        function remove (item, index) {
+            if (vm.paginationData.items && vm.paginationData.items.length > 0) {
+                paginationService.remove(item)
+                .then(function (res) {
+                    vm.paginationData.items.splice(index, 1);
+                });
+            }
+        }
+
+        function save () {
+            // $timeout is used just for simulate a "loading"
+            vm.isLoading = true;
+            $timeout(function () {
+                paginationService.save(vm.selectedItem)
+                .then(function (res) {
+                    var item = vm.selectedItem;
+                    //vm.items[item.index] = angular.copy(item.obj);
+                    vm.isLoading = false;
+                });
+            },
+            1000);
+        }
+
+        function calculateTotalPages () {
+            paginationService.findAll(0, 0)
+            .success(function (res) {
+                var paginationData = vm.paginationData || {};
+                paginationData.total = res.length;
+                paginationData.totalPages = Math.ceil(paginationData.total / paginationData.perPage);
+            })
+            .error(function (res) {
+                console.log('Error trying to get the total of repositories', res);
+            });
+        }
+        calculateTotalPages();
+
+        function paginate (pageNumber, perPage) {
+            vm.isLoading = true;
+            var paginationData = vm.paginationData || {};
+            if (! perPage) {
+                perPage = paginationData.perPage;
+            }
+            paginationService.findAll(perPage, pageNumber)
+            .success(function (res) {
+                paginationData.items = res;
+                vm.isLoading = false;
+            })
+            .error(function (res) {
+                console.log('Error getting the repositories list', res);
+            });
+        }
+
+        function edit (name) {
+            paginationService.edit(name)
+            .success(function (res) {
+                vm.selectedItem = res;
+            })
+            .error(function (res) {
+                console.log('Error getting the repository by name ' + name, res);
+            });
+        }
+
+    }
 
 })(angular);

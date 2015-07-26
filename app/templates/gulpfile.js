@@ -14,7 +14,7 @@ gulp.task('styles', function () {
 });
 
 gulp.task('semantic', function () {
-  return gulp.src('bower_components/semantic/dist/themes/**/**/**')
+  return gulp.src('bower_components/semantic-ui/dist/themes/**/**/**')
   .pipe(gulp.dest('dist/styles/themes'));
 });
 
@@ -72,7 +72,7 @@ gulp.task('e2e', function () {
         configFile: 'tests/protractor.conf.js',
         args: ['--baseUrl', 'http://127.0.0.1:8000'],
         debug: false
-      })) 
+      }))
       .on('error', function(e) { throw e })
 });
 
