@@ -9,8 +9,6 @@ Gulp + AngularJs + Semantic-UI
 
 ## Features
 
-Please see our [gulpfile.js](app/templates/gulpfile.js) for up to date information on what we support.
-
 * Built-in preview server with livereload
 * Automagically lint your scripts
 * Awesome image optimization
@@ -20,9 +18,6 @@ Please see our [gulpfile.js](app/templates/gulpfile.js) for up to date informati
 * E2E tests using Protractor
 * Unit tests using Mocha + Chai
 * CSS Autoprefixing
-
-*For more information on what this generator can do for you, take a look at the [gulp plugins](app/templates/_package.json) used in our `package.json`.*
-
 
 ## Getting Started
 
@@ -38,7 +33,6 @@ to only create the skel and skips the automatic execution of `bower` and `npm`
 ### Building
 
 * `gulp build`: concat all html, js and css files and minify them to the `dist` directory
-* `gulp `
 
 ### Testing
 
