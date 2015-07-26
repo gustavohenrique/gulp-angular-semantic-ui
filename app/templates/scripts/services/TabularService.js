@@ -1,17 +1,17 @@
 ;(function (angular) {
     'use strict';
 
-    var app = angular.module('services.Tabular', []);
+    angular
+        .module('services.Tabular', [])
+        .service('tabularService', TabularService);
 
-    app.service('tabularService', ['$http',
+    TabularService.$inject = ['$http'];
 
-        function ($http) {
-            
-            this.findAll = function (success, error) {
-                //$http.get('url-here').success(success).error(error);
-                success();
-            };
-        }
-    ]);
+    function TabularService ($http) {
+        this.findAll = function () {
+            //return $http.get('url-here');
+
+        };
+    }
 
 })(angular);
