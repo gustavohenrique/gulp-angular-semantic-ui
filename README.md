@@ -21,26 +21,45 @@ Gulp + AngularJs + Semantic-UI
 
 ## Getting Started
 
-- Install: `npm install -g gulp bower yo generator-gulp-angular-semantic-ui`
-- Run: `yo gulp-angular-semantic-ui` to create the skel and install all the
-dependencies into current directory or `yo gulp-angular-semantic-ui --skip-install`
-to only create the skel and skips the automatic execution of `bower` and `npm`
+### Creating
+
+```shell
+npm install -g gulp bower yo generator-gulp-angular-semantic-ui
+mkdir mywebproject && cd mywebproject
+yo gulp-angular-semantic-ui
+bower install
+npm install
+```
 
 ### Watching
 
-* `gulp serve`: run a localhost server listen on port 9000
+* Run a localhost server listen on port 9000:
+`gulp serve`
 
 ### Building
 
-* `gulp build`: concat all html, js and css files and minify them to the `dist` directory
+* Concat all html, js and css files and minify them to the *dist* directory:
+`gulp build`:
 
 ### Testing
 
-* Run `node_modules/gulp-protractor/node_modules/protractor/bin/webdriver-manager update` to install the drivers
-* Open a terminal window and run `gulp serve` to run the application
-* Open another terminal window and run `gulp webdriver` to start a standalone webdriver (if youren't using Chrome)
-* Run `gulp e2e` to run the e2e tests
-* For unit tests, run `npm test`
+* Install the drivers:
+`node_modules/gulp-protractor/node_modules/protractor/bin/webdriver-manager update`
+* Run the server via terminal:
+`gulp serve`
+* Start a standalone webdriver instance (if you aren't using Chrome):
+`gulp webdriver`
+* Run the e2e tests:
+`gulp e2e`
+* For unit tests:
+`npm test`
+
+## Changes
+
+#### v0.9.0
+* AngularJS 1.47
+* Semantic-UI 2.1.4
+* Removed gulp-postcss
 
 ## License
 
