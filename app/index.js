@@ -47,10 +47,10 @@ module.exports = yeoman.generators.Base.extend({
                 name: _s.slugify(this.appname),
                 private: true,
                 dependencies: {
-                    'angular': '~1.4.3',
-                    'angular-route': '~1.4.3',
+                    'angular': '~1.4.7',
+                    'angular-route': '~1.4.7',
                     'angular-loading-bar': '~0.8.0',
-                    'semantic-ui': '~2.0.7'
+                    'semantic-ui': '~2.1.4'
                 }
             };
 
@@ -101,16 +101,16 @@ module.exports = yeoman.generators.Base.extend({
     },
 
     install: function() {
-        var howToInstall = '\nAfter running ' + chalk.yellow.bold('npm install & bower install');
+        var howToInstall = '\nNow you need to run: ' + chalk.yellow.bold('bower install && npm install');
+        this.log(howToInstall);
+        // if (this.options['skip-install']) {
+        //     this.log(howToInstall);
+        //     return;
+        // }
 
-        if (this.options['skip-install']) {
-            this.log(howToInstall);
-            return;
-        }
-
-        this.installDependencies({
-            skipInstall: this.options['skip-install']
-        });
+        // this.installDependencies({
+        //     skipInstall: this.options['skip-install']
+        // });
 
     }
 });
